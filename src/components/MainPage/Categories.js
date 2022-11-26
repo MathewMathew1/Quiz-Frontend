@@ -28,8 +28,10 @@ const Categories = () => {
             }})
             .then(response => response.json())
             .then(response => {
-                setCategories(response)
-                setIsDataFetched(true)
+                if(!response.error){
+                    setCategories(response)
+                    setIsDataFetched(true)
+                }
             })
             .catch(error=>{console.log(error)})
         // eslint-disable-next-line react-hooks/exhaustive-deps
