@@ -43,7 +43,6 @@ const Login = () => {
             }})
             .then(response => response.json())
             .then(response => {
-                console.log(response)
                 if(response.accessToken !== undefined) {
                     localStorage.setItem("token","Bearer " + response.accessToken)
                     window.location.href = "/"

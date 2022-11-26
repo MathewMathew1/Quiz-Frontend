@@ -28,7 +28,7 @@ const AdminPage = () => {
                 }})
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
+
                     setIsDataFetched(true)
                     if(response.error){
                         return

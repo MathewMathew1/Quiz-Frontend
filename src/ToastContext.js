@@ -32,7 +32,6 @@ const ToastProvider = ({ children }) => {
     
         setTimeout(() => setIdToDelete(idOfCreatedToast)
         , TOAST_SCREEN_TIME)
-       console.log(toastInfos)
     }
 
     useEffect(() => {

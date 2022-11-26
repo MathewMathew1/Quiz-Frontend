@@ -38,7 +38,7 @@ const UserProvider = ({ children }) => {
                 }})
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
+
                     if(!("error" in response)){
                         setUserInfo(response.user)
                         setLogged(true) 

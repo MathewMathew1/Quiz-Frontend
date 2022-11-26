@@ -1,7 +1,7 @@
 let urlOfSocketConnection
 
 if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development') urlOfSocketConnection = "http://localhost:8000" 
-else urlOfSocketConnection = "http://localhost:8000" 
+else urlOfSocketConnection = "https://api-quiz.onrender.com/" 
 
 const BaseUrlOfApi=  urlOfSocketConnection + "/api/v1/"
 const urlOfGetQuestions = BaseUrlOfApi + "quiz/question/"

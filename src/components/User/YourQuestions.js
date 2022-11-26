@@ -45,7 +45,7 @@ const YourQuestions = () => {
                 .then(response => response.json())
                 .then(response => {
                     let questions = response.questions
-                    console.log(response)
+
                     let amountOfPages = Math.ceil(questions.length/VARIABLES.amountOfQuestionsPerPage) + 1
                     setAmountOfPages(amountOfPages)
                     for(let i=0; i<questions.length; i++){
