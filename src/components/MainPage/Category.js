@@ -5,6 +5,8 @@ import { urlOfStats } from "../../routes";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+const ANONYMOUS_USERS = "Anonymous"
+
 const Category = () => {
     const [isDataFetched, setIsDataFetched] = useState(false)
     const [categoryUserData, setUserCategoryData] = useState(Object)
@@ -29,12 +31,12 @@ const Category = () => {
                 }})
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
-                    setUserCategoryData(response.QuizDataForUser)
-                    setCategoriesBiggestAuthors(response.authors)
-                    setImage(response.image)
-                    setIsDataFetched(true)
-                    return
+                    if(!response.error){
+                        setUserCategoryData(response.quizDataForUser)
+                        setCategoriesBiggestAuthors(response.authors)
+                        setImage(response.image)
+                    }
+                    setIsDataFetched(true)      
                 })
                 .catch(error=>{console.log(error)})
             }
@@ -77,7 +79,7 @@ const Category = () => {
                                 {categoriesBiggestAuthors.map((value, index) => {
                                     return(
                                         <li key={index}>
-                                            {value.author[0].username}: {value.count}
+                                            {value.author[0]?.username? value.author[0].username: ANONYMOUS_USERS}: {value.count}
                                         </li>
                                     )
                                 })}

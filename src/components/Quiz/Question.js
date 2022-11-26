@@ -176,7 +176,7 @@ const QuestionView = ({ question, index, remainingTime, showTimer=true, userAnsw
                                     </div>    
                                 )
                             })}
-                            <div className="author-name">Author: {question.author[0]["username"]} </div>
+                            <div className="author-name">Author: {question.author[0]?.username? question.author[0].username: "Anonim"} </div>
                             {showNextButton  ? (
                                 <div>
                                     {lastQuestion  ? (

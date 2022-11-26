@@ -22,9 +22,10 @@ const UserStats = () => {
             }})
             .then(response => response.json())
             .then(response => {
-                console.log(response)
-                setUserStats(response.userQuizData)
-                setIsDataFetched(true)
+                if(!response.error){
+                    setUserStats(response.userQuizData)
+                    setIsDataFetched(true)
+                }        
             })
             .catch(error=>{console.log(error)})
         }

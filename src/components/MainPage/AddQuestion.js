@@ -3,6 +3,7 @@ import questionMark from "../../questionMark.svg"
 import deleteSign from "../../deleteSign.png" 
 import useArray from "../CustomHooks/useArray"
 import { urlOfGetCategories, urlOfGetQuestions } from "../../routes"
+import { useUpdateToast } from "../../ToastContext"
 
 const AddQuestion = () => {
     
@@ -19,6 +20,7 @@ const AddQuestion = () => {
     const errors = useArray([])
     const categoriesForSuggestion = useArray([])
     const suggestedCategories = useArray([])
+    const updateToast = useUpdateToast()
 
     const controller = new AbortController()
 
@@ -71,11 +73,13 @@ const AddQuestion = () => {
             }})
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+              
                 if(response.error){
                     errors.push(response.error)
+                    updateToast.addToast({toastText: "Failed to add question", severity: "error"})
                     return
                 }
+                updateToast.addToast({toastText: "Added question successfully", severity: "success"})
                 setQuestion("")
                 setAnswerA("")
                 setAnswerB("")
