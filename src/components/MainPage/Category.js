@@ -57,7 +57,7 @@ const Category = () => {
                             </Link>
                         </h1>
                     </div> 
-                    <div className="container2">   
+                    <div className="container2 info-container">   
                         <div className="gridLabel columns3">
                                 <div className="label-progressBar" >Your Progress in this quiz: </div>
                                 <div className="progressBarDiv">
@@ -74,7 +74,7 @@ const Category = () => {
                                 </div>
                         </div>
                         <div className="authorsList">
-                            <h3>Authors:</h3>
+                            <h3 style={{marginTop:"0.4rem"}}>Authors:</h3>
                             <ol>
                                 {categoriesBiggestAuthors.map((value, index) => {
                                     return(

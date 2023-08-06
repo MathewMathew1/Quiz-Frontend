@@ -74,11 +74,11 @@ const UserStats = () => {
     } 
 
     return (
-        <div>
+        <div className="pb-medium">
             { isDataFetched  ? (
                 <div className="stats-box">
                     <table  className="stats-table">
-                        <caption ><h3>Your stats</h3></caption>
+                        <caption ><h2>Your stats</h2></caption>
                         <tbody>
                         <tr>
                             <th className="title">Category name 

@@ -198,9 +198,9 @@ const AddQuestion = () => {
                             <div className="tags" >
                                 {categories.array.map((value, index) => {
                                     return(
-                                        <span key={index} className="delete-span" >{value} 
+                                        <div key={index} className="delete-span" >{value} 
                                             <img className="delete-mark" onClick={ () => categories.removeValueByIndex(index)} src={deleteSign} alt="delete" /> 
-                                        </span>
+                                        </div>
                                     )
                                 })}
                             </div>
@@ -209,7 +209,7 @@ const AddQuestion = () => {
                                 <div className="error">{value}</div>
                             )
                         })}
-                        <div className="align-right">
+                        <div className="align-right mt-small">
                             <button  className="button green-button" >Add Question  </button>
                         </div>       
                     </form>

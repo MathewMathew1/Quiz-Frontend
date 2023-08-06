@@ -131,66 +131,64 @@ const QuestionView = ({ question, index, remainingTime, showTimer=true, userAnsw
     }
 
     return(
-        <div>   
+
+        <div className="questionBox">
             <div>
-                <div>
-                    <div className="questionBox">
-                        <div className="question">
-                            <div className="container">
-                                <div className="question-text">
-                                    {question.question}
-                                </div>
-                                {showTimer  ? (
-                                    <div className="circular">
-                                        <div className="inner"></div>
-                                        <div className="number">{remainingTime}</div>
-                                        <div className="circle">
-                                        <div className="bar left">
-                                            <div id="left" className="progress"></div>
-                                        </div>
-                                        <div className="bar right">
-                                            <div id="right" className="progress"></div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                ):null}
-                            </div>
+                <div className="question">
+                    <div className="container">
+                        <div className="question-text">
+                            {question.question}
                         </div>
-                        {Array.from(Array(4), (e, i) => {
-                            return ( 
-                                <div className="answer-box" id={"a"+i.toString()+index} key={i} >
-                                    <div className="container">
-                                        <div className="answer-label">{ANSWERS_LABEL[i]}</div> 
-                                        <div className="answer">{question.answers[i]}</div>
-                                    </div>    
+                        {showTimer  ? (
+                            <div className="circular">
+                                <div className="inner"></div>
+                                <div className="number">{remainingTime}</div>
+                                <div className="circle">
+                                <div className="bar left">
+                                    <div id="left" className="progress"></div>
                                 </div>
-                            )
-                        })}
-                        <div className="question">
-                            {question.description}
-                            {Array.from(Array(4), (e, i) => {
-                                return (
-                                    <div key={i} className="container margin-top">
-                                        
-                                        {showPercentageBar(i)}
-                                    </div>    
-                                )
-                            })}
-                            <div className="author-name">Author: {question.author[0]?.username? question.author[0].username: "Anonim"} </div>
-                            {showNextButton  ? (
-                                <div>
-                                    {lastQuestion  ? (
-                                        <div className="question-button" onClick={() => nextQuestion()}>Next</div>
-                                    ):
-                                        <div className="question-button" onClick={() => setFinished(true)}>Finish</div>
-                                    }
+                                <div className="bar right">
+                                    <div id="right" className="progress"></div>
                                 </div>
-                                ):null}
-                        </div>  
-                    </div> 
-                </div> 
-            </div>    
-        </div>
+                                </div>
+                            </div>
+                        ):null}
+                    </div>
+                </div>
+                {Array.from(Array(4), (e, i) => {
+                    return ( 
+                        <div className="answer-box" id={"a"+i.toString()+index} key={i} >
+                            <div className="container">
+                                <div className="answer-label">{ANSWERS_LABEL[i]}</div> 
+                                <div className="answer">{question.answers[i]}</div>
+                            </div>    
+                        </div>
+                    )
+                })}
+                <div className="question">
+                    {question.description}
+                    {Array.from(Array(4), (e, i) => {
+                        return (
+                            <div key={i} className="container margin-top">
+                                
+                                {showPercentageBar(i)}
+                            </div>    
+                        )
+                    })}
+                    <div className="author-name">Author: {question.author[0]?.username? question.author[0].username: "Anonim"} </div>
+                    {showNextButton  ? (
+                        <div>
+                            {lastQuestion  ? (
+                                <div className="question-button" onClick={() => nextQuestion()}>Next</div>
+                            ):
+                                <div className="question-button" onClick={() => setFinished(true)}>Finish</div>
+                            }
+                        </div>
+                        ):null}
+                </div>  
+            </div>
+        </div> 
+  
     )
 }
 
@@ -220,112 +218,114 @@ const QuestionEdit = ({index, question,
 
     return(      
         <div key={index} className="questionBox">
-            <div className="question">
-                <div className="container">
-                    <label htmlFor={"textArea"+index.toString()+index.toString()}></label>
-                    <textarea onChange={ (e)=>changeQuestion(e, index)} id={"textArea"+index.toString()+index.toString()} rows="4"  
-                        readOnly={!question.isQuestionEdited} className="answer" value={question.question}>
-                    </textarea>
-                </div>
-            </div>
-            {Array.from(Array(4), (_e, i) => {
-                return ( 
-                    <div className="answer-box" id={"a"+i.toString()+index.toString()} key={i}  >
-                        <div className="container">
-                            <div  className="answer-label">{ANSWERS_LABEL[i]}</div>
-                            {i===question.correctAnswer ? (
-                                <input id={"answer"+i+"/"+index} style={{backgroundColor: "var(--green-correct)"}} onChange={ (e)=>changeAnswers(e, index, i)} 
-                                    readOnly={!question.isQuestionEdited} className="answer" value={question.answers[i]}></input>
-                            ) : (
-                                <input id={"answer"+i+"/"+index} onChange={ (e)=>changeAnswers(e, index, i)} 
-                                    readOnly={!question.isQuestionEdited} className="answer" value={question.answers[i]}></input>
-                            )}    
-
-                                <input onChange={(e) => changeCorrectAnswer(e, index)} checked={i===question.correctAnswer}
-                                    value={i} type="radio"  name={index+"checkButton"}></input>
-                                <span className="checkmark"></span>
-
-                        </div>    
+            <div>
+                <div className="question">
+                    <div className="container">
+                        <label htmlFor={"textArea"+index.toString()+index.toString()}></label>
+                        <textarea onChange={ (e)=>changeQuestion(e, index)} id={"textArea"+index.toString()+index.toString()} rows="4"  
+                            readOnly={!question.isQuestionEdited} className="answer" value={question.question}>
+                        </textarea>
                     </div>
-                )
-            })}
-            <div className="question">
-                <div className="container">
-                    <textarea onChange={ (e)=>changeQuestionDescription(e, index)} id={"description"+index.toString()+index.toString()} 
-                        rows="4" className="answer" readOnly={!question.isQuestionEdited} value={question.description}>
-
-                    </textarea>
-                </div>    
+                </div>
                 {Array.from(Array(4), (_e, i) => {
-                    return (
-                        <div key={i} className="container margin-top">
-                            <div className="answer-label">{ANSWERS_LABEL[i]}</div>
-                            {showPercentageBar(i, index)}
-                        </div>         
+                    return ( 
+                        <div className="answer-box" id={"a"+i.toString()+index.toString()} key={i}  >
+                            <div className="container">
+                                <div  className="answer-label">{ANSWERS_LABEL[i]}</div>
+                                {i===question.correctAnswer ? (
+                                    <input id={"answer"+i+"/"+index} style={{backgroundColor: "var(--green-correct)"}} onChange={ (e)=>changeAnswers(e, index, i)} 
+                                        readOnly={!question.isQuestionEdited} className="answer" value={question.answers[i]}></input>
+                                ) : (
+                                    <input id={"answer"+i+"/"+index} onChange={ (e)=>changeAnswers(e, index, i)} 
+                                        readOnly={!question.isQuestionEdited} className="answer" value={question.answers[i]}></input>
+                                )}    
+
+                                    <input onChange={(e) => changeCorrectAnswer(e, index)} checked={i===question.correctAnswer}
+                                        value={i} type="radio"  name={index+"checkButton"}></input>
+                                    <span className="checkmark"></span>
+
+                            </div>    
+                        </div>
                     )
                 })}
-                <div className="align-right">
-                    <label> Drop Data 
-                        <input type="radio" onClick={()=>changeDropData(index)} checked={question.dropData} readOnly></input>
-                        <span className="checkmark"></span>
-                    </label>
+                <div className="question">
+                    <div className="container">
+                        <textarea onChange={ (e)=>changeQuestionDescription(e, index)} id={"description"+index.toString()+index.toString()} 
+                            rows="4" className="answer" readOnly={!question.isQuestionEdited} value={question.description}>
+
+                        </textarea>
+                    </div>    
+                    {Array.from(Array(4), (_e, i) => {
+                        return (
+                            <div key={i} className="container margin-top">
+                                <div className="answer-label">{ANSWERS_LABEL[i]}</div>
+                                {showPercentageBar(i, index)}
+                            </div>         
+                        )
+                    })}
+                    <div className="align-right">
+                        <label> Drop Data 
+                            <input type="radio" onClick={()=>changeDropData(index)} checked={question.dropData} readOnly></input>
+                            <span className="checkmark"></span>
+                        </label>
+                    </div>
+                    <div className="tags" >
+                        <label >Add Category</label>
+                        <input autoComplete="off" readOnly={!question.isQuestionEdited} maxLength="16" className="add"  id={"category-field"+index} 
+                            type="text" value={question.NewCategory} onChange={ (e)=>changeCategory(e, index)} ></input>
+                        <input disabled={!question.isQuestionEdited} type="submit" 
+                            value="Add" onClick={ (e)=>addCategory(e, index)}>
+                        </input><br/>
+                        { question.suggestedCategories.length > 0 && question.NewCategoryErrors.length === 0 ? ( 
+                            <div className="suggestion-dropdown">
+                                {question.suggestedCategories.map((value, index2) => { 
+                                    return(
+                                        <div onClick={ (_e) => addSuggested(value, index2) } className="suggestion" key={index2} >
+                                            {value} 
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        ) : null}   
+                    </div>          
+                        {question.NewCategoryErrors.map((value2, index2) => {
+                            return(
+                                <div key={index2} className="error">{value2}</div>
+                            )
+                        })}
+                        {question.category.map((value2, index2) => {
+                            return(
+                                <span key={index2} className="delete-span" >{value2} 
+                                    {question.isQuestionEdited? (
+                                        <img  className="delete-mark" onClick={ () => deleteCategory(index,index2)} src={deleteSign} alt="delete" /> 
+                                    ) : null}
+                                </span>
+                            )
+                        })}
+                    <div className="author-name">Author: {question.author[0]["username"]} </div>
+                    <div className="align-right">
+                        {question.errorsInUpdateOfQuestion.map((value2, index2) => {
+                            return(
+                                <div key={index2} className="error">{value2}</div>
+                            )
+                        })}
+                        {user.userInfo.id===question.author[0]["id"] ? (
+                            <span>
+                                {!question.isQuestionEdited ? (
+                                    <span>
+                                        <button className="button blue-button" onClick={ () => makeQuestionEditable(index)}>Edit</button>
+                                        <button className="button red-button" onClick={ () => openDeleteModal()}>Delete</button>
+                                    </span>
+                                ) : (
+                                    <span>
+                                        <button className="button blue-button" onClick={ () => discardChanges(index)}>Discard Changes</button>  
+                                        <button className="button blue-button" onClick={ () => changeQuestionInBackend(index)}>Save Changes</button>
+                                    </span>
+                                )}  
+                        </span>
+                        ) : null}
+                    </div>    
                 </div>
-                <div className="tags" >
-                    <label >Add Category</label>
-                    <input autoComplete="off" readOnly={!question.isQuestionEdited} maxLength="16" className="add"  id={"category-field"+index} 
-                        type="text" value={question.NewCategory} onChange={ (e)=>changeCategory(e, index)} ></input>
-                    <input disabled={!question.isQuestionEdited} type="submit" 
-                        value="Add" onClick={ (e)=>addCategory(e, index)}>
-                    </input><br/>
-                    { question.suggestedCategories.length > 0 && question.NewCategoryErrors.length === 0 ? ( 
-                        <div className="suggestion-dropdown">
-                            {question.suggestedCategories.map((value, index2) => { 
-                                return(
-                                    <div onClick={ (_e) => addSuggested(value, index2) } className="suggestion" key={index2} >
-                                        {value} 
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    ) : null}   
-                 </div>          
-                    {question.NewCategoryErrors.map((value2, index2) => {
-                        return(
-                            <div key={index2} className="error">{value2}</div>
-                        )
-                    })}
-                    {question.category.map((value2, index2) => {
-                        return(
-                            <span key={index2} className="delete-span" >{value2} 
-                                {question.isQuestionEdited? (
-                                    <img  className="delete-mark" onClick={ () => deleteCategory(index,index2)} src={deleteSign} alt="delete" /> 
-                                ) : null}
-                            </span>
-                        )
-                    })}
-                <div className="author-name">Author: {question.author[0]["username"]} </div>
-                <div className="align-right">
-                    {question.errorsInUpdateOfQuestion.map((value2, index2) => {
-                        return(
-                            <div key={index2} className="error">{value2}</div>
-                        )
-                    })}
-                    {user.userInfo.id===question.author[0]["id"] ? (
-                        <span>
-                            {!question.isQuestionEdited ? (
-                                <span>
-                                    <button className="button blue-button" onClick={ () => makeQuestionEditable(index)}>Edit</button>
-                                    <button className="button red-button" onClick={ () => openDeleteModal()}>Delete</button>
-                                </span>
-                            ) : (
-                                <span>
-                                    <button className="button blue-button" onClick={ () => discardChanges(index)}>Discard Changes</button>  
-                                    <button className="button blue-button" onClick={ () => changeQuestionInBackend(index)}>Save Changes</button>
-                                </span>
-                            )}  
-                    </span>
-                    ) : null}
-                </div>    
             </div>   
         </div>   
     )

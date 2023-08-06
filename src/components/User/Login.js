@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react"
 import { urlOfLogin } from "../../routes"
 import useArray from "../CustomHooks/useArray"
-import person from "../../person.png"
 import { useUser } from "../../UserContext"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
+import { VscAccount } from "react-icons/vsc"
 
 const Login = () => {
     const [username, setUserName] =  useState("")
@@ -71,23 +71,25 @@ const Login = () => {
     
         <div className="box">
             <div className="login-box">
-            <img  id="login-person"  src={person} alt="login person" />
-                <form onSubmit={Login} onKeyDown={handleKeypress}>  
-                    <label htmlFor="username">Username:</label><br/>
-                    <input className="input" id="username-field" placeholder="Username" type="text" value={username} onChange={ (e)=>setUserName(e.target.value)} required></input><br/>
-                    <label htmlFor="username">Password:</label><br/>
-                    <input className="input" id="password-field" type="password" placeholder="Password" value={password} onChange={ (e)=>setPassword(e.target.value)} required></input><br/>
-                    {errors.array.map((value, index) => {
-                        return(
-                            <div key={`error ${index}`} className="error">{value}</div>
-                        )
-                    })}
-                    <div className="align-right">
-                        <button  className="button green-button" >Login</button>
-                    </div>    
-                    Or <Link to="/sign-up">click here</Link> to sign up!
-                   
-                </form>
+            <div className="container container-center">
+                <VscAccount className="icon-pearson"/>
+            </div>
+            <form onSubmit={Login} onKeyDown={handleKeypress}>  
+                <label htmlFor="username">Username:</label><br/>
+                <input className="input" id="username-field" placeholder="Username" type="text" value={username} onChange={ (e)=>setUserName(e.target.value)} required></input><br/>
+                <label htmlFor="username">Password:</label><br/>
+                <input className="input" id="password-field" type="password" placeholder="Password" value={password} onChange={ (e)=>setPassword(e.target.value)} required></input><br/>
+                {errors.array.map((value, index) => {
+                    return(
+                        <div key={`error ${index}`} className="error">{value}</div>
+                    )
+                })}
+                <div className="align-right">
+                    <button  className="button green-button" >Login</button>
+                </div>    
+               <div className="info-login"> Or <Link to="/sign-up">click here</Link> to sign up! </div>
+                
+            </form>
             </div>
             <div id="toast">You have created account successfully</div>
         </div>

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react"
-import person from "../../person.png"
 import useArray from "../CustomHooks/useArray"
 import { urlOfSignUp } from "../../routes"
 import { useUser } from "../../UserContext"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { useUpdateToast } from "../../ToastContext"
+import { VscAccount } from "react-icons/vsc"
 
 const SignUp = () => {
 
@@ -79,7 +79,9 @@ const SignUp = () => {
     
         <div className="box">
             <div className="login-box">
-            <img onDragEnd={() => this.clearHighlights()} id="login-person"  src={person} alt="login person" />
+                <div className="container container-center">
+                    <VscAccount className="icon-pearson"/>
+                </div>
                 <form onSubmit={signUp} onKeyDown={handleKeypress}>  
                     <label htmlFor="username">Username:</label><br/>
                     <input maxLength="16" className="input" id="username-field" placeholder="Username(4-16 letters)" type="text" value={username} onChange={ (e)=>setUserName(e.target.value)} required></input><br/>
@@ -95,7 +97,7 @@ const SignUp = () => {
                     <div className="align-right">
                         <button  className="button green-button" >Sign Up</button>
                     </div>    
-                    Or <Link to="login">click here</Link> to login!
+                    <div className="info-login">Or <Link to="/login">click here</Link> to login!</div>
                    
                 </form>
             </div>

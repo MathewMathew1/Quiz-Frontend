@@ -22,7 +22,8 @@ body {
   --orange-starting: rgb(247, 120, 36);
   --red-finish: rgb(247, 61, 36);
   --red-bad: rgb(241, 118, 97);
-
+  --pink-disabled: #b18b92;
+  --pink: #e87288;
   --progress-circle-color: var(--green-starting);
   --progress-circle-height: 50px;
   --progress-circle-width: 50px
@@ -97,7 +98,9 @@ a{
   display: block;
 }
 
-
+.container-center{
+  justify-content: center;
+}
 
 .button{
   position: relative;
@@ -157,11 +160,24 @@ a{
 
 .login-box{
   padding: 1rem;
-  padding-left: 0.2rem;
-  background-color: rgb(155, 132, 132);
   display: inline-block;
   max-width: 600px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
+.icon-pearson{
+  width: 60px;
+  height: 100%;
+}
+
+.info-login{
+  text-align: right;
+  font-size: 0.9rem;
 }
 
 .add{
@@ -205,6 +221,10 @@ a{
   box-sizing: border-box;
 }
 
+.input:focus{
+  outline: none; 
+}
+
 .margin0-bottom{
   margin-bottom: 0rem;
   border-radius: 0px;
@@ -215,15 +235,15 @@ input[type="submit"] {
   text-align: center;
   height: 2.4rem;
   width: 3rem;
-  background: var(--blue);
+  background: var(--pink);
   color: white;
   border: 0;
   -webkit-appearance: none;
-
+  
 }
 
 input[type="submit"]:hover:enabled{
-  background: var(--blue-hovered);
+  opacity: 0.8;
 }
 
 input[type="submit"]:disabled{
@@ -328,14 +348,21 @@ input[type="submit"]:disabled{
 }
 
 .delete-span{
-  background-color: rgb(219, 207, 207);
+  width: fit-content;
   margin: 0.2rem;
-  padding: 0.1rem;
-  display: inline-block;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .delete-mark:hover{
-  background:#ff3300;
+  background:#d3aea5;
 }
 
 .delete-mark{
@@ -346,7 +373,10 @@ input[type="submit"]:disabled{
 
 .tags{
   width: 98%;
-  margin: auto;
+  margin-left: 3rem;
+  margin-top: 1rem;
+  display: flex;
+    flex-direction: row;
 }
 
 #toast {
@@ -468,16 +498,24 @@ input[type="submit"]:disabled{
   margin-top: 0.8rem;
 }
 
-.background-image >  h1{
+.background-image > h1{
   margin-top: 3rem;
   text-align: center;
   text-transform:capitalize;
   background-color: rgb(233, 114, 114, 0.8);
   background-blend-mode: screen;
+  padding: 0.4rem;
 }
 
 .container2{
   display: flex;
+  
+}
+
+.info-container{
+  background-color: #d3d5d8;
+    padding: 0.4rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 a.button {
@@ -493,7 +531,7 @@ a.button:hover{
 .columns3{
   width: 50%;
   max-width: 500px;
-  border: black solid;
+
   padding: 0.2rem;
 }
 
@@ -506,12 +544,8 @@ a.button:hover{
 }
 
 .authorsList{
+  padding-left: 0.4rem;
   
-  background-color: white;
-  border: black solid;
-  display: inline-block;
-  
-  padding: 1rem;
   justify-content: right;
 }
 
@@ -543,6 +577,10 @@ a.button:hover{
 
 /**/
 
+.pb-medium{
+  padding-bottom:  1rem;
+}
+
 .stats-box {
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -555,6 +593,8 @@ a.button:hover{
   padding: 1rem ;
   word-wrap: break-word;
   overflow: auto;
+  margin-bottom: 2rem;
+  border-radius: 16px;
 }
 
 .question-button{
@@ -567,6 +607,7 @@ a.button:hover{
 
 .question-text{
   flex-grow: 1;
+  padding: 0.4rem;
 }
 
 .input-group{
@@ -890,6 +931,11 @@ textarea {
   padding-top: 0.6rem;
   text-align: right; 
   float: left; 
+  margin-right: 0.4rem;
+}
+
+.mt-small{
+  margin-top: 1rem;
 }
 
 .gridLabel label:after { 
@@ -1140,7 +1186,8 @@ textarea {
     display:block;
   }
   .tags{
-    margin: 0;
+    
+    margin-left: 0;
     width:100%;
     text-align: left;
   }
