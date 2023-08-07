@@ -18,7 +18,7 @@ const Toasts = () => {
           return(
             <div style={{bottom: `${index*70+50}px`}} key={`toast ${index}`} className={`toast ${toast.severity}`}>
                 {toast.message}
-                <div onClick={()=>handleClose(toast.id)} className="close">x</div>
+                <div onClick={()=>handleClose(toast.id)} style={{paddingRight: "0.2rem"}} className="close">x</div>
             </div>
         )})}  
       </>     

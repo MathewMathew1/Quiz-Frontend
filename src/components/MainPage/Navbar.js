@@ -1,9 +1,13 @@
 import { useUser, useUserUpdate } from "../../UserContext";
 import { Link } from "react-router-dom";
+import { useUpdateToast } from "../../ToastContext";
+import { healthCheckRoute } from "../../routes";
+import { useEffect } from "react";
 
 const Navbar = () => {
     const user = useUser()
-    const userUpdate = useUserUpdate
+    const userUpdate = useUserUpdate()
+    const updateToast = useUpdateToast()
 
     const changeSidebarStatus = () => {
         let topNav = document.getElementById("myTopNav");
@@ -12,7 +16,23 @@ const Navbar = () => {
         } else {
           topNav.className = "topNav";
         }
-      }
+    }
+
+    useEffect(() => {
+        const checkHealth = async () => {
+            try {
+              const response = await fetch(healthCheckRoute);
+      
+              if (!response.ok) {
+                updateToast.addToast({toastText: "Server may take some time to start, up to 30 seconds.", severity: "error"})
+              } 
+            } catch (error) {
+                updateToast.addToast({toastText: "Server may take some time to start, up to 30 seconds.", severity: "error"})
+            }
+          };
+    
+        checkHealth();
+    }, []);
 
     return (
         <div className="topNav" id="myTopNav">

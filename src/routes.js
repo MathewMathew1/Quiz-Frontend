@@ -3,7 +3,7 @@ let urlOfSocketConnection
 if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development') urlOfSocketConnection = "http://localhost:8000" 
 else urlOfSocketConnection = "https://api-quiz.onrender.com" 
 
-const BaseUrlOfApi=  urlOfSocketConnection + "/api/v1/"
+const BaseUrlOfApi = urlOfSocketConnection + "/api/v1/"
 const urlOfGetQuestions = BaseUrlOfApi + "quiz/question/"
 const urlOfGetCategories = BaseUrlOfApi + "quiz/categories"
 const urlOfDeleteQuestion = BaseUrlOfApi + "quiz/question/id/"
@@ -14,7 +14,8 @@ const urlOfLogin = BaseUrlOfApi + "login"
 const urlGetGroups = BaseUrlOfApi + "quiz/groups/"
 const urlOfAnswerQuestion = BaseUrlOfApi + "quiz/question/id/"
 const urlOfUserData = BaseUrlOfApi + "user/data"
+const healthCheckRoute = urlOfSocketConnection + "/healthCheck"
 
 
 export {BaseUrlOfApi, urlGetGroups, urlOfLogin, urlOfSignUp, urlOfGetQuestions, urlOfGetCategories, urlOfDeleteQuestion, urlUpdateQuestion, 
-    urlOfStats,  urlOfAnswerQuestion, urlOfUserData}
+    urlOfStats,  urlOfAnswerQuestion, urlOfUserData, healthCheckRoute}
